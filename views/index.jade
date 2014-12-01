@@ -1,5 +1,29 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	h1 Rahm vs. Nature
+	p Is Chicago ready for the next pothole season? This is a month-by-month chart of 311 tickets to request pothole patching. Please keep in mind that each 311 ticket/request is frequently for multiple potholes.
+	p Data source:&nbsp;
+		a(target="_blank" href="https://data.cityofchicago.org/Service-Requests/311-Service-Requests-Pot-Holes-Reported/7as2-ds3y") https://data.cityofchicago.org/Service-Requests/311-Service-Requests-Pot-Holes-Reported/7as2-ds3y
+	div(id="chart_div" style="width: 1200px; height: 600px;")
+	script(src='//code.jquery.com/jquery-2.1.0.min.js')
+	script(src="https://www.google.com/jsapi")
+	script(type='text/javascript').
+		var chartArray = !{googleChartArray};
+		var width = $(window).width() - 60+'px';
+		document.getElementById('chart_div').style.width=width;
+		google.load("visualization", "1", {packages:["corechart"]});
+		google.setOnLoadCallback(drawVisualization);
+		function drawVisualization() {
+			// Some raw data (not necessarily accurate
+			var data = google.visualization.arrayToDataTable(chartArray);
+			var options = {
+				title : 'Pothole Statistics by Month',
+				vAxis: {title: "Chicago 311 System Tickets"},
+				hAxis: {title: "Month", slantedText:true, slantedTextAngle:66},
+				seriesType: "bars",
+				series: {2: {type: "line"}}
+			};
+			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+		}
