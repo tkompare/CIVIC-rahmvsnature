@@ -370,6 +370,7 @@ router.get('/', function(req, res) {
 		});
 	};
 
+
 	makeRequests(function(result) {
 		var googleChartArray = [];
 		googleChartArray.push(['Month','Tickets Created','Tickets Completed','Tickets Still Open']);
