@@ -13,20 +13,35 @@ block content
 	script(type='text/javascript').
 		var chartArray = !{googleChartArray};
 		var width = $(window).width() - 60+'px';
+		var chart;
 		document.getElementById('chart_div').style.width=width;
 		google.load("visualization", "1", {packages:["corechart"]});
+		var data;
+		var options = {
+			legend:'bottom',
+			title : 'Pothole Statistics by Month',
+			vAxis: {title: "Chicago 311 System Tickets"},
+			hAxis: {title: "Month", slantedText:true, slantedTextAngle:66},
+			seriesType: "bars",
+			series: {2: {type: "line"}}
+		};
+
 		google.setOnLoadCallback(drawVisualization);
+
 		function drawVisualization() {
 			// Some raw data (not necessarily accurate
-			var data = google.visualization.arrayToDataTable(chartArray);
-			var options = {
-				legend:'bottom',
-				title : 'Pothole Statistics by Month',
-				vAxis: {title: "Chicago 311 System Tickets"},
-				hAxis: {title: "Month", slantedText:true, slantedTextAngle:66},
-				seriesType: "bars",
-				series: {2: {type: "line"}}
-			};
-			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+			data = google.visualization.arrayToDataTable(chartArray);
+			chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+		}
+		var id;
+		$(window).resize(function () {
+			clearTimeout(id);
+			id = setTimeout(doneResizing, 500);
+		});
+		function doneResizing() {
+			width = $(window).width() - 60+'px';
+			document.getElementById('chart_div').style.width=width;
+			chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
 			chart.draw(data, options);
 		}

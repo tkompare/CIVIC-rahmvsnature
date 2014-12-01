@@ -383,7 +383,7 @@ router.get('/', function(req, res) {
 		sortableMonth.sort();
 		for(var item in sortableMonth)
 		{
-			console.log(sortableMonth[item]);
+			//console.log(sortableMonth[item]);
 			for(var name in result) {
 				if(name == sortableMonth[item])
 				{
@@ -392,7 +392,7 @@ router.get('/', function(req, res) {
 				}
 			}
 		}
-		console.log(googleChartArray);
+		//console.log(googleChartArray);
 		res.render('index', { title: 'Express', googleChartArray: JSON.stringify(googleChartArray) });
 	});
 });
