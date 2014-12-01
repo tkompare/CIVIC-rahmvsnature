@@ -5,6 +5,8 @@ block content
 	p Is Chicago ready for the next pothole season? This is a month-by-month chart of 311 tickets to request pothole patching. Please keep in mind that each 311 ticket/request is frequently for multiple potholes.
 	p Data source:&nbsp;
 		a(target="_blank" href="https://data.cityofchicago.org/Service-Requests/311-Service-Requests-Pot-Holes-Reported/7as2-ds3y") https://data.cityofchicago.org/Service-Requests/311-Service-Requests-Pot-Holes-Reported/7as2-ds3y
+	p This site is authored by&nbsp;
+		a(target="_blank" href="https://twitter.com/tomkompare") @tomkompare
 	div(id="chart_div" style="width: 1200px; height: 600px;")
 	script(src='//code.jquery.com/jquery-2.1.0.min.js')
 	script(src="https://www.google.com/jsapi")
@@ -18,6 +20,7 @@ block content
 			// Some raw data (not necessarily accurate
 			var data = google.visualization.arrayToDataTable(chartArray);
 			var options = {
+				legend:'bottom',
 				title : 'Pothole Statistics by Month',
 				vAxis: {title: "Chicago 311 System Tickets"},
 				hAxis: {title: "Month", slantedText:true, slantedTextAngle:66},

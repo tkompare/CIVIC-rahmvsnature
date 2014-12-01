@@ -373,7 +373,7 @@ router.get('/', function(req, res) {
 
 	makeRequests(function(result) {
 		var googleChartArray = [];
-		googleChartArray.push(['Month','Tickets Created','Tickets Completed','Tickets Still Open']);
+		googleChartArray.push(['Month','Created','Completed','Still Open']);
 		var sortableMonth = [];
 		for(var name in result) {
 			//console.log(name);
