@@ -23,7 +23,11 @@ block content
 			vAxis: {title: "Chicago 311 System Tickets"},
 			hAxis: {title: "Month", slantedText:true, slantedTextAngle:66},
 			seriesType: "bars",
-			series: {2: {type: "line"}}
+			series: {
+				0: {dataOpacity: "0.67", color: "#FFA500"},
+				1: {dataOpacity: "0.87", color: "#4169E1"},
+				2: {type: "line", lineWidth: "5", color:"#B22222"}
+			}
 		};
 
 		google.setOnLoadCallback(drawVisualization);
