@@ -26,7 +26,7 @@ router.get('/', function(req, res) {
 		urlCompletedMonthsAgo[0] = urlData+'$select=count(*) AS completed_'+monthsagoname[0]+urlWhere+'completion_date >= \''+monthsago[0]+'\' AND completion_date <= \''+monthsagoend[0]+'\'';
 		urlOpenMonthsAgo[0] = urlData+'$select=count(*) AS open_'+monthsagoname[0]+urlWhere+'creation_date <= \''+monthsagoend[0]+'\' AND (completion_date IS NULL OR completion_date >= \''+monthsagoend[0]+'\')';
 
-		for(var i=1; i<48; i++)
+		for(var i=1; i<60; i++)
 		{
 			monthsago[i] = now.clone().startOf('month').subtract(i,'months').toISOString().split('.')[0];
 			monthsagoend[i] = now.clone().endOf('month').subtract(i,'months').toISOString().split('.')[0];
